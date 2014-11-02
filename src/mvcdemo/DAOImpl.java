@@ -71,7 +71,7 @@ public class DAOImpl implements DAO,Serializable{
 
     @Override
     public void setStudentGroup(String name,String groupName) {
-        for(int i=0; i<)
+       
     }
 
     @Override
