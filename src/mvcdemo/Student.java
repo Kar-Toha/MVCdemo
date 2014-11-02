@@ -27,11 +27,11 @@ public class Student implements Serializable {
         this.name = name;
     }
 
-    public Group getGroupName() {
+    public Group getGroupOfStudent() {
         return groupOfStudent;
     }
 
-    public void setGroupName(Group groupOfStudent) {
+    public void setGroupOfStudent(Group groupOfStudent) {
         this.groupOfStudent = groupOfStudent;
     }
 
@@ -39,7 +39,7 @@ public class Student implements Serializable {
         return dateOfEnrollment;
     }
 
-    public void setDate(String date) {
+    public void setDateOfEnrollment(String date) {
         this.dateOfEnrollment = date;
     }
 
