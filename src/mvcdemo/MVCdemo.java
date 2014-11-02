@@ -19,6 +19,7 @@ public class MVCdemo {
             //print faculty
             //print group
             //print student
+
         }
     }
 
