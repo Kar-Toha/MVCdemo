@@ -1,5 +1,6 @@
 package mvcdemo;
+import java.io.Serializable;
 
-public class DAOImpl {
+public class DAOImpl implements DAO,Serializable{
     
 }
