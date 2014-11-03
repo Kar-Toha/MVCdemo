@@ -7,41 +7,37 @@ public class MVCdemo {
 
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
-        View sView = new View();
-        View gView = new View();
+        //View sView = new View();
+        //View gView = new View();
         Controller sCont=new Controller();
         Controller gCont=new Controller();
+        
+        System.out.println("Input command");
         while (!sc.hasNext("exit")) {
-            System.out.println("Input command");
             String curStr = sc.next();
             switch (curStr.substring(0,3)) {
                 case "add":
-                    if (curStr.substring(3,4)=="S")
-                    sCont.addStudent();
-                    if (curStr.substring(3,4)=="G")
-                    gCont.addGroup();
+                    switch (curStr.substring(3,4)){
+                        case "S":sCont.addStudent();break;
+                        case "G":gCont.addGroup();break;}
                     break;
                 case "set":
-                    if (curStr.substring(3,12)=="StundentN") 
-                        sCont.setStudentName(sc.next());
-                    if (curStr.substring(3,12)=="StundentD") 
-                        sCont.setStudentDate(sc.next());
-                    if (curStr.substring(3,12)=="StundentG") 
-                        sCont.setGroupName(sc.next());
-                    if (curStr.substring(3,9)=="GroupN") 
-                        gCont.setGroupName(sc.next());
-                    if (curStr.substring(3,9)=="GroupF") 
-                        gCont.setGroupFaculty(sc.next());
+                    switch (curStr.substring(3,12)){ 
+                        case "StudentN": sCont.setStudentName();break;
+                        case "StudentD": sCont.setStudentDate();break;
+                        case "StudentG": sCont.setStudentGroupName();break;}
+                    switch (curStr.substring(3,9)){ 
+                        case "GroupN": gCont.setGroup();break;
+                        case "GroupF": gCont.setGroupFaculty();break;}
                     break;
                 case "get":
                     if (curStr.substring(3,4)=="S") ;
                     if (curStr.substring(3,4)=="G") ;
                     break;
                 case "rem":
-                    if (curStr.substring(6,7)=="S")
-                        sCont.removeStudent(sc.next());
-                    if (curStr.substring(6,7)=="G") 
-                        sCont.removeGroup(sc.next());
+                    switch (curStr.substring(6,7)){
+                        case "S":sCont.removeStudent(sc.next());break;
+                        case "G":gCont.removeGroup(sc.next());break;}
                     break;
             }
         }

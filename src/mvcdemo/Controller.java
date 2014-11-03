@@ -3,55 +3,73 @@ package mvcdemo;
 import java.util.Scanner;
 
 public class Controller {
-   private Student Smodel;
-   private Group Gmodel;
-   private View view;
    private DAO dao;
    Scanner scan = new Scanner(System.in);
    
-   public Student addStudent(){
+   public void addStudent(){
    System.out.print("Input name of student: ");
                     String a=scan.next();
-                    System.out.println();
                     System.out.print("Input group of student: ");
                     String b=scan.next();
-                    System.out.println();
                     System.out.print("Input date of enrollment: ");
                     String c= scan.next();
                     System.out.println();
-                    Smodel=dao.addStudent(a,b,c);
-   return Smodel;
+                    dao.addStudent(a,b,c);
    }
    
-   public Group addGroup(){
-   System.out.print("Input name of group: ");
+   public void addGroup(){
+   System.out.print("Input group: ");
                     String a=scan.next();
-                    System.out.println();
                     System.out.print("Input faculty: ");
                     String b=scan.next();
                     System.out.println();
-                    Gmodel=dao.addGroup(a,b);
-   return Gmodel;
+                    dao.addGroup(a,b);
    }
 
-   public void setStudentName(String name){
-      Smodel.setName(name);		
+   public void setStudentName(){	
+       System.out.println("Input old name:");
+       String a=scan.next();
+       System.out.println("Input new name:");
+       String b=scan.next();
+       dao.setStudentName(a,b);
    }
-   public void setStudentDate(String date){
-      Smodel.setDate(date);		
+   public void setStudentDate(){
+       System.out.println("Input student's name:");
+       String a=scan.next();
+       System.out.println("Input date of enrollment:");
+       String b=scan.next();
+       dao.setStudentDateofEnrollment(a,b);
    }
-   public void setGroupName(String groupName){
-      Gmodel.setGroup(groupName);
-      Smodel.setGroupName(groupName);
+   public void setStudentGroupName(){
+       System.out.println("Input student's name:");
+       String a=scan.next();
+       System.out.println("Input group:");
+       String b=scan.next();
+       dao.setStudentGroup(a,b);
    }
-   public void setGroupFaculty(String faculty){
-      Gmodel.setFaculty(faculty);
+   public void setGroup(){
+       System.out.println("Input old group:");
+       String a=scan.next();
+       System.out.println("Input new group:");
+       String b=scan.next();
+       dao.setGroupName(a,b);
    }
-   public String getStudentName(){
-   return Smodel.getName();		
+   public void setGroupFaculty(){
+       System.out.println("Input group:");
+       String a=scan.next();
+       System.out.println("Input faculty:");
+       String b=scan.next();
+       dao.setGroupFaculty(a,b);
    }
-   public String getStudentGroup(){
-      return Gmodel.getGroup();		
+   public void getStudentData(){
+       System.out.println("Input student's name:");
+       String a=scan.next();
+       dao.getStudentByName(a);		
+   }
+   public void getGroup(){
+       System.out.println("Input group:");
+       String a=scan.next();
+       dao.getGroupByName(a);		
    }
    public void removeStudent(String name){
        dao.removeStudent(name);
@@ -60,10 +78,11 @@ public class Controller {
        dao.removeGroup(groupName);
    }
 
-   public void updateView(){	
+   /*public void updateView(){	
       System.out.println("--------------------------------------------------");
       System.out.println("Student's Name"+" | "+"Faculty"+" | "+"Group"+" | "+"DateOfEnrollment");
       view.printDetails(getStudentName(), Gmodel.getFaculty(),getStudentGroup(),
               Smodel.getDateOfEnrollment());
-   }
+   }*/
+
 }
