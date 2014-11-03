@@ -54,47 +54,103 @@ public class DAOImpl implements DAO,Serializable{
 
     @Override
     public void setStudentName(String oldName, String newName) {
-        for(int i=0; i<students.size(); i++){
-            if(students.get(i).getName().equals(oldName)){
-                students.get(i).setName(newName);
+        for (Student student : students) {
+            if (student.getName().equals(oldName)) {
+                student.setName(newName);
             }
         }
     }
 
     @Override
     public void setStudentDateofEnrollment(String name,String dateofEnrollment) {
-        for(int i=0; i<students.size(); i++){
-            if(students.get(i).getName().equals(name)){
-                students.get(i).setDateOfEnrollment(name);
+        for (Student student : students) {
+            if (student.getName().equals(name)) {
+                student.setDateOfEnrollment(dateofEnrollment);
             }
         }
     }
 
     @Override
     public void setStudentGroup(String name,String groupName) {
-       
+        Group curGroup=new Group(groupName);
+       for(int i=0; i<emptyGroups.size();i++){
+           if(emptyGroups.get(i).getGroupName().equals(groupName)){
+               curGroup=emptyGroups.get(i);
+               emptyGroups.remove(i);
+           }
+       }
+       for(Student student:students){
+           if(student.getName().equals(name)){
+              student.setGroupOfStudent(curGroup);
+              }
+       }
     }
 
     @Override
     public void setGroupName(String oldName, String newName) {
-        
+        boolean flag=false;
+        for (Group emptyGroup : emptyGroups) {
+            if (emptyGroup.getGroupName().equals(oldName)) {
+                flag=true;
+                emptyGroup.setGroupName(newName);
+            }
+        }
+        if(!flag){
+            for(Student student:students){
+           if(student.getGroupOfStudent().getGroupName().equals(oldName)){
+              student.getGroupOfStudent().setGroupName(newName);
+              }
+       } 
+        }
     }
-
     @Override
     public void setGroupFaculty(String groupName,String faculty) {
-        
+         boolean flag=false;
+        for (Group emptyGroup : emptyGroups) {
+            if (emptyGroup.getGroupName().equals(groupName)) {
+                flag=true;
+                emptyGroup.setFaculty(faculty);
+            }
+        }
+        if(!flag){
+            for(Student student:students){
+           if(student.getGroupOfStudent().getGroupName().equals(groupName)){
+              student.getGroupOfStudent().setFaculty(faculty);
+              }
+       } 
+        }
     }
 
     @Override
     public Student getStudentByName(String name) {
-        return null;
-        
+        Student curStudent=null;
+        for(Student student:students){
+            if(student.getName().equals(name)){
+                curStudent=student;
+            }
+        }
+        return curStudent;
     }
 
     @Override
     public Group getGroupByName(String name) {
-        return null;
-        
+        Group curGroup=null;
+        boolean flag=false;
+        for (Group emptyGroup : emptyGroups) {
+            if (emptyGroup.getGroupName().equals(name)) {
+                flag=true;
+                curGroup=emptyGroup;
+                
+            }
+        }
+        if(!flag){
+           for(Student student:students){
+           if(student.getGroupOfStudent().getGroupName().equals(name)){
+              curGroup=student.getGroupOfStudent();
+              }
+       } 
+        }
+        return curGroup;
     }
 
 
