@@ -12,20 +12,20 @@ public class DAOImpl implements DAO,Serializable{
         emptyGroups=new ArrayList<>();
         }
     @Override
-    public void addStudent(String name, String groupName) {
-       Group groupOfStudent=new Group(groupName);
+    public void addStudent(String name,int groupNumber) {
+       Group groupOfStudent=new Group(groupNumber);
        students.add(new Student(name, groupOfStudent));
     }
 
     @Override
-    public void addStudent(String name, String dateOfEnrollment, String groupName) {
-       Group groupOfStudent=new Group(groupName);
+    public void addStudent(String name,String dateOfEnrollment,int groupNumber) {
+       Group groupOfStudent=new Group(groupNumber);
        students.add(new Student(name, dateOfEnrollment,groupOfStudent));
     }
 
     @Override
-    public void addGroup(String groupName, String faculty) {
-       emptyGroups.add(new Group(groupName, faculty));
+    public void addGroup(int groupNumber,String faculty) {
+       emptyGroups.add(new Group(groupNumber, faculty));
     }
 
     @Override
@@ -39,14 +39,14 @@ public class DAOImpl implements DAO,Serializable{
     }
 
     @Override
-    public void removeGroup(String name) {
+    public void removeGroup(int groupNumber) {
         for(int i=0; i<emptyGroups.size();i++){
-            if(emptyGroups.get(i).getGroupName().equals(name)){
+            if(emptyGroups.get(i).getGroupNumber()==groupNumber){
                 emptyGroups.remove(i);
             }
         }
         for(int i=0; i<students.size(); i++){
-            if(students.get(i).getGroupOfStudent().getGroupName().equals(name)){
+            if(students.get(i).getGroupOfStudent().getGroupNumber()==groupNumber){
                 students.remove(i);
             }
         }
@@ -71,10 +71,10 @@ public class DAOImpl implements DAO,Serializable{
     }
 
     @Override
-    public void setStudentGroup(String name,String groupName) {
-        Group curGroup=new Group(groupName);
+    public void setStudentGroup(String name,int groupNumber){
+        Group curGroup=new Group(groupNumber);
        for(int i=0; i<emptyGroups.size();i++){
-           if(emptyGroups.get(i).getGroupName().equals(groupName)){
+           if(emptyGroups.get(i).getGroupNumber()==groupNumber){
                curGroup=emptyGroups.get(i);
                emptyGroups.remove(i);
            }
@@ -87,34 +87,34 @@ public class DAOImpl implements DAO,Serializable{
     }
 
     @Override
-    public void setGroupName(String oldName, String newName) {
+    public void setGroupNumber(int oldNumber,int newNumber){
         boolean flag=false;
         for (Group emptyGroup : emptyGroups) {
-            if (emptyGroup.getGroupName().equals(oldName)) {
+            if (emptyGroup.getGroupNumber()==oldNumber) {
                 flag=true;
-                emptyGroup.setGroupName(newName);
+                emptyGroup.setGroupNumber(newNumber);
             }
         }
         if(!flag){
             for(Student student:students){
-           if(student.getGroupOfStudent().getGroupName().equals(oldName)){
-              student.getGroupOfStudent().setGroupName(newName);
+           if(student.getGroupOfStudent().getGroupNumber()==oldNumber){
+              student.getGroupOfStudent().setGroupNumber(newNumber);
               }
        } 
         }
     }
     @Override
-    public void setGroupFaculty(String groupName,String faculty) {
+    public void setGroupFaculty(int groupNumber,String faculty) {
          boolean flag=false;
         for (Group emptyGroup : emptyGroups) {
-            if (emptyGroup.getGroupName().equals(groupName)) {
+            if (emptyGroup.getGroupNumber()==groupNumber) {
                 flag=true;
                 emptyGroup.setFaculty(faculty);
             }
         }
         if(!flag){
             for(Student student:students){
-           if(student.getGroupOfStudent().getGroupName().equals(groupName)){
+           if(student.getGroupOfStudent().getGroupNumber()==groupNumber){
               student.getGroupOfStudent().setFaculty(faculty);
               }
        } 
@@ -133,11 +133,11 @@ public class DAOImpl implements DAO,Serializable{
     }
 
     @Override
-    public Group getGroupByName(String name) {
+    public Group getGroupByNumber(int groupNumber){
         Group curGroup=null;
         boolean flag=false;
         for (Group emptyGroup : emptyGroups) {
-            if (emptyGroup.getGroupName().equals(name)) {
+            if (emptyGroup.getGroupNumber()==groupNumber) {
                 flag=true;
                 curGroup=emptyGroup;
                 
@@ -145,7 +145,7 @@ public class DAOImpl implements DAO,Serializable{
         }
         if(!flag){
            for(Student student:students){
-           if(student.getGroupOfStudent().getGroupName().equals(name)){
+           if(student.getGroupOfStudent().getGroupNumber()==groupNumber){
               curGroup=student.getGroupOfStudent();
               }
        } 
@@ -164,8 +164,8 @@ public class DAOImpl implements DAO,Serializable{
     }
 
     @Override
-    public ArrayList<Student> getStudentsbyGroup(String groupName) {
-        Group curGroup=getGroupByName(groupName);
+    public ArrayList<Student> getStudentsbyGroup(int groupNumber){
+        Group curGroup=getGroupByNumber(groupNumber);
         ArrayList<Student> studentsInGroup=new ArrayList<>();
         for(Student student:students){
             if(student.getGroupOfStudent().equals(curGroup)){
