@@ -9,17 +9,17 @@ public class Controller {
    public void addStudent(){
    System.out.print("Input name of student: ");
                     String a=scan.next();
-                    System.out.print("Input group of student: ");
-                    String b=scan.next();
+                    System.out.print("Input groupNumber of student: ");
+                    int b=scan.nextInt();
                     System.out.print("Input date of enrollment: ");
-                    String c= scan.next();
+                    String c=scan.next();
                     System.out.println();
-                    dao.addStudent(a,b,c);
+                    dao.addStudent(a,c,b);
    }
    
    public void addGroup(){
-   System.out.print("Input group: ");
-                    String a=scan.next();
+   System.out.print("Input groupNumber: ");
+                    int a=scan.nextInt();
                     System.out.print("Input faculty: ");
                     String b=scan.next();
                     System.out.println();
@@ -43,20 +43,20 @@ public class Controller {
    public void setStudentGroupName(){
        System.out.println("Input student's name:");
        String a=scan.next();
-       System.out.println("Input group:");
-       String b=scan.next();
+       System.out.println("Input groupNumber:");
+       int b=scan.nextInt();
        dao.setStudentGroup(a,b);
    }
    public void setGroup(){
        System.out.println("Input old group:");
-       String a=scan.next();
+       int a=scan.nextInt();
        System.out.println("Input new group:");
-       String b=scan.next();
-       dao.setGroupName(a,b);
+       int b=scan.nextInt();
+       dao.setGroupNumber(a,b);
    }
    public void setGroupFaculty(){
        System.out.println("Input group:");
-       String a=scan.next();
+       int a=scan.nextInt();
        System.out.println("Input faculty:");
        String b=scan.next();
        dao.setGroupFaculty(a,b);
@@ -68,14 +68,14 @@ public class Controller {
    }
    public void getGroup(){
        System.out.println("Input group:");
-       String a=scan.next();
-       dao.getGroupByName(a);		
+       int a=scan.nextInt();
+       dao.getGroupByNumber(a);		
    }
    public void removeStudent(String name){
        dao.removeStudent(name);
    }
-   public void removeGroup(String groupName){
-       dao.removeGroup(groupName);
+   public void removeGroup(int groupNumber){
+       dao.removeGroup(groupNumber);
    }
 
    /*public void updateView(){	
