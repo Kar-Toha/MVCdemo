@@ -153,6 +153,39 @@ public class DAOImpl implements DAO,Serializable{
         return curGroup;
     }
 
+    @Override
+    public ArrayList<Student> getAllStudents() {
+       return students;
+    }
+
+    @Override
+    public ArrayList<Group> getAllEmptyGroups() {
+        return emptyGroups;
+    }
+
+    @Override
+    public ArrayList<Student> getStudentsbyGroup(String groupName) {
+        Group curGroup=getGroupByName(groupName);
+        ArrayList<Student> studentsInGroup=new ArrayList<>();
+        for(Student student:students){
+            if(student.getGroupOfStudent().equals(curGroup)){
+                studentsInGroup.add(student);
+            }
+        }
+        return studentsInGroup;
+    }
+
+    @Override
+    public ArrayList<Student> getStudentsbyFaculty(String faculty) {
+         ArrayList<Student> studentsInFaculty=new ArrayList<>();
+         for(Student student:students){
+            if(student.getGroupOfStudent().getFaculty().equals(faculty)){
+                studentsInFaculty.add(student);
+            }
+        }
+        return studentsInFaculty;
+    }
+
 
 
  
