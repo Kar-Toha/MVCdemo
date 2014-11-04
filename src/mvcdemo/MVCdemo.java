@@ -37,7 +37,7 @@ public class MVCdemo {
                 case "rem":
                     switch (curStr.substring(6,7)){
                         case "S":sCont.removeStudent(sc.next());break;
-                        case "G":gCont.removeGroup(sc.next());break;}
+                        case "G":gCont.removeGroup(sc.nextInt());break;}
                     break;
             }
         }

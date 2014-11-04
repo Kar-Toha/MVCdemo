@@ -4,23 +4,23 @@ import java.io.Serializable;
 
 public class Group implements Serializable {
 
-    private String groupName;
+    private int groupNumber;
     private String faculty;
     
-    Group(String groupName){
-        this.groupName=groupName;
+    Group(int groupNumber){
+        this.groupNumber=groupNumber;
     }
-    Group(String groupName, String faculty){
-        this.groupName=groupName;
+    Group(int groupNumber, String faculty){
+        this.groupNumber=groupNumber;
         this.faculty=faculty;
     }
     
-    public String getGroupName() {
-        return groupName;
+    public int getGroupNumber() {
+        return groupNumber;
     }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
+    public void setGroupNumber(int groupNumber) {
+        this.groupNumber = groupNumber;
     }
 
     public String getFaculty() {
