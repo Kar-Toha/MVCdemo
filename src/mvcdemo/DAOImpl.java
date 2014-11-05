@@ -19,7 +19,23 @@ public class DAOImpl implements DAO,Serializable{
 
     @Override
     public void addStudent(String name,String dateOfEnrollment,int groupNumber) {
-       Group groupOfStudent=new Group(groupNumber);
+        Group groupOfStudent=null;
+       for(Group group:emptyGroups){
+           if (group.getGroupNumber()==groupNumber){
+               if(group.getFaculty()!=null){
+                   groupOfStudent=group;
+                   }
+           }
+       }
+       for(Student student:students){
+           if(student.getGroupOfStudent().getGroupNumber()==groupNumber){
+               if(student.getGroupOfStudent().getFaculty()!=null){
+                   groupOfStudent=student.getGroupOfStudent();
+               }
+           }
+       }
+       if (groupOfStudent==null)
+       groupOfStudent=new Group(groupNumber);
        students.add(new Student(name, dateOfEnrollment,groupOfStudent));
     }
 
