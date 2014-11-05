@@ -23,4 +23,9 @@ public interface DAO{
     public ArrayList<Group> getAllEmptyGroups();
     public ArrayList<Student> getStudentsbyGroup(int groupNumber);
     public ArrayList<Student> getStudentsbyFaculty(String faculty);
+    public String getDateOfEnrollmentOfStudent(String name);
+    public int getGroupNumberOfStudent(String name);
+    public String getFacultyOfGroup(int groupNumber);
+    
+    
 }
