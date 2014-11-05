@@ -80,6 +80,11 @@ public class DAOImpl implements DAO,Serializable{
            }
        }
        for(Student student:students){
+        if(student.getGroupOfStudent().getGroupNumber()==groupNumber){
+            curGroup=student.getGroupOfStudent();
+        }   
+       }
+       for(Student student:students){
            if(student.getName().equals(name)){
               student.setGroupOfStudent(curGroup);
               }
