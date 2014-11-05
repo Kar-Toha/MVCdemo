@@ -186,6 +186,21 @@ public class DAOImpl implements DAO,Serializable{
         return studentsInFaculty;
     }
 
+    @Override
+    public String getDateOfEnrollmentOfStudent(String name) {
+        return getStudentByName(name).getDateOfEnrollment();
+    }
+
+    @Override
+    public int getGroupNumberOfStudent(String name) {
+        return getStudentByName(name).getGroupOfStudent().getGroupNumber();
+    }
+
+    @Override
+    public String getFacultyOfGroup(int groupNumber) {
+        return getGroupByNumber(groupNumber).getFaculty();
+    }
+
 
 
  
